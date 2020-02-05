@@ -12,7 +12,7 @@ window.addEventListener('load',()=> {
             lat=position.coords.latitude;
 
             const proxy = 'https://cors-anywhere.herokuapp.com/';
-            const api = `${proxy}https://api.darksky.net/forecast/9689495f9495c3c4a7dfb48d2b032389/37.8267,-122.4233`;
+            const api = `${proxy}https://api.darksky.net/forecast/9689495f9495c3c4a7dfb48d2b032389/${lat},${long}`;
             fetch(api)
             .then(res =>{ 
                 return res.json();
@@ -27,13 +27,13 @@ window.addEventListener('load',()=> {
                 // Formula for Celsius
                 let celsius = (temperature - 32) * (5/9);
                 // Set Icon
-                setIcons(icon, documents.querySelector(".icon"));
+                setIcons(icon, document.querySelector(".icon"));
 
                 // Change temperature to C/F
                 temperatureSection.addEventListener("click", () => {
                     if(temperatureSpan.textContent === "F"){
                         temperatureSpan.textContent = "C";
-                        temperatureDegree.textContent = math.floor(celsius);
+                        temperatureDegree.textContent = Math.floor(celsius);
                     }else{
                             temperatureSpan.textContent = 'F';
                             temperatureDegree.textContent = temperature ;
